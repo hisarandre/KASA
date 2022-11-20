@@ -16,7 +16,7 @@ function Accommodation() {
     }
 
     const { pictures, title, location, host, tags, rating, description, equipments } = accommodation;
-    console.log(pictures);
+
     return (
       <div className="main-container">
         <Slider pictures={pictures} />
