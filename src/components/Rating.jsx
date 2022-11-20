@@ -6,7 +6,13 @@ function Rating({ value }) {
 
   return (
     <div className="rating">
-      {range.map((rangeElem) => (value >= rangeElem ? <img src={star} alt="etoile" /> : <img src={emptyStar} alt="etoile" />))}
+      {range.map((rangeElem, index) =>
+        value >= rangeElem ? (
+          <img key={`star-${index}`} src={star} alt="etoile" />
+        ) : (
+          <img key={`star-empty-${index}`} src={emptyStar} alt="etoile" />
+        )
+      )}
     </div>
   );
 }

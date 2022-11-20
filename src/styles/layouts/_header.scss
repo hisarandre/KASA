@@ -1,10 +1,22 @@
 .header {
   display: flex;
   justify-content: space-between;
-  margin: 2rem 0;
-  padding: 0 4%;
+  padding: 2rem 4%;
   width: 100%;
   max-width: 1400px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  &.scroll {
+    padding: 1rem 4%;
+    background-color: white;
+    transition: 0.3s background-color ease;
+
+    .header__logo {
+      max-width: 6rem;
+    }
+  }
 
   &__logo {
     max-width: 10rem;

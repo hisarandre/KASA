@@ -1,8 +1,10 @@
 import BannerBg from "../assets/banner_background.png";
 import Thumbnail from "../components/Thumbnail";
+import { useFetch } from "../utils/useFetch";
 
-function Home({ data, loading, error }) {
+function Home() {
   const bannerMessage = `Chez vous, \n partout et ailleurs`;
+  const { data, isLoading, error } = useFetch(`../../data/accommodations.json`);
 
   return (
     <div className="main-container">
@@ -12,9 +14,9 @@ function Home({ data, loading, error }) {
       </section>
 
       <section className="gallery">
-        {loading && <p>Recherche de logements...</p>}
-        {error && <p>Erreur de chargement...</p>}
-        {!error && data && <Thumbnail data={data} />}
+        {isLoading && <p>Recherche de logements...</p>}
+        {error && <p>Il y a un problème</p>}
+        {!error && !isLoading && data && <Thumbnail data={data} />}
       </section>
     </div>
   );

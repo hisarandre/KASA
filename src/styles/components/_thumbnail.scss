@@ -1,8 +1,12 @@
 .thumbnail {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-template-rows: repeat(3, auto);
   grid-gap: 2.8rem;
+
+  @media #{$medium-down} {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 
   a {
     display: flex;

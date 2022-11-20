@@ -1,21 +1,31 @@
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
+import { useFetch } from "../utils/useFetch";
 import Dropdown from "../components/Dropdown";
+import Slider from "../components/Slider";
 import Rating from "../components/Rating";
 
-function Accommodation({ data, error, loading }) {
+function Accommodation() {
   const { id } = useParams();
+  const { data, isLoading, error } = useFetch(`../../data/accommodations.json`);
 
-  if (!error && !loading && data) {
+  if (!error && !isLoading && data) {
     const accommodation = data.find((object) => object.id === id);
+
+    if (!accommodation) {
+      return <Navigate to="/404"></Navigate>;
+    }
+
+    const { pictures, title, location, host, tags, rating, description, equipments } = accommodation;
+    console.log(pictures);
     return (
       <div className="main-container">
-        <img className="accommodation__cover" src={accommodation.cover} alt={accommodation.title}></img>
+        <Slider pictures={pictures} />
         <header className="accommodation__info">
           <section className="accommodation__details">
-            <h1>{accommodation.title}</h1>
-            <p>{accommodation.location}</p>
+            <h1>{title}</h1>
+            <p>{location}</p>
             <ul className="tags">
-              {accommodation.tags.map((tag, index) => (
+              {tags.map((tag, index) => (
                 <li className="tags__item" key={`${tag}-${index}`}>
                   {tag}
                 </li>
@@ -24,16 +34,16 @@ function Accommodation({ data, error, loading }) {
           </section>
           <section className="host">
             <div className="host__details">
-              <p>{accommodation.host.name}</p>
-              <img src={accommodation.host.picture} alt={accommodation.host.name} />
+              <p>{host.name}</p>
+              <img src={host.picture} alt={accommodation.host.name} />
             </div>
-            <Rating value={accommodation.rating} />
+            <Rating value={rating} />
           </section>
         </header>
 
         <section className="dropdown--double">
-          <Dropdown title="Description" content={accommodation.description} defaultOpen={false} />
-          <Dropdown title="Equipements" content={accommodation.equipments} defaultOpen={false} />
+          <Dropdown title="Description" content={description} defaultOpen={false} />
+          <Dropdown title="Equipements" content={equipments} defaultOpen={false} />
         </section>
       </div>
     );
