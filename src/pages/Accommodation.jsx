@@ -1,12 +1,12 @@
 import { useParams, Navigate } from "react-router-dom";
-import { useFetch } from "../utils/useFetch";
+import { useAccommodation } from "../utils/useAccommodation";
 import Dropdown from "../components/Dropdown";
 import Slider from "../components/Slider";
 import Rating from "../components/Rating";
 
 function Accommodation() {
   const { id } = useParams();
-  const { data, isLoading, error } = useFetch(`../../data/accommodations.json`);
+  const { data, isLoading, error } = useAccommodation();
 
   if (!error && !isLoading && data) {
     const accommodation = data.find((object) => object.id === id);
@@ -35,7 +35,7 @@ function Accommodation() {
           <section className="host">
             <div className="host__details">
               <p>{host.name}</p>
-              <img src={host.picture} alt={accommodation.host.name} />
+              <img src={host.picture} alt={host.name} />
             </div>
             <Rating value={rating} />
           </section>

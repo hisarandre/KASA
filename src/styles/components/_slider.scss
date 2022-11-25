@@ -44,6 +44,15 @@
       height: 18rem;
     }
   }
+
+  &__nbr {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    z-index: 11;
+  }
 }
 
 .slide {
@@ -53,28 +62,5 @@
   &.active {
     opacity: 1;
     transition-duration: 1s;
-  }
-}
-
-.dots {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  z-index: 11;
-
-  &__dot {
-    width: 0.8rem;
-    height: 0.8rem;
-    border-radius: 50%;
-    border: 3px solid white;
-    margin: 0.5rem;
-    background: white;
-    cursor: pointer;
-
-    &.active {
-      background: transparent;
-    }
   }
 }

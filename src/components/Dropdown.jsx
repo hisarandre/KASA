@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 
 Dropdown.propTypes = {
-  content: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  content: PropTypes.oneOfType([PropTypes.string.isRequired, PropTypes.array.isRequired]),
   title: PropTypes.string.isRequired,
   defaultOpen: PropTypes.bool.isRequired,
 };

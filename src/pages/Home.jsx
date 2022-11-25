@@ -1,10 +1,10 @@
 import BannerBg from "../assets/banner_background.png";
 import Thumbnail from "../components/Thumbnail";
-import { useFetch } from "../utils/useFetch";
+import { useAccommodation } from "../utils/useAccommodation";
 
 function Home() {
   const bannerMessage = `Chez vous, \n partout et ailleurs`;
-  const { data, isLoading, error } = useFetch(`../../data/accommodations.json`);
+  const { data, isLoading, error } = useAccommodation();
 
   return (
     <div className="main-container">
